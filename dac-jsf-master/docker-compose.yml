@@ -1,0 +1,6 @@
+    version: "3"
+    services:
+      dac-jsf-master:
+        image: dac-jsf-master:0.1-SNAPSHOT
+        ports:
+          - "8080:8080"

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" >
+
+<ui:composition template="template.xhtml">
+    <ui:define name="centro">
+        <h1>Cadastro pessoas</h1>
+        <h:form>
+            <h:outputLabel value="Nome:"/>
+            <h:inputText id="nome" value="#{cadastroPessoasBean.pessoaSelecionada.nome}" required="true" requiredMessage="Campo Obrigatório"/>
+            <h:message for="nome" styleClass="erro" />
+
+            <h:outputLabel value="Cpf" for="cpf" />
+            <h:inputText id="cpf" value="#{cadastroPessoasBean.pessoaSelecionada.cpf}" validatorMessage="CPF Inválido!">
+                <f:validateRegex pattern="\d{3}(\.\d{3}){2}-\d{2}" />
+                <f:validator validatorId="validadorDeCPF" />
+            </h:inputText>
+            <h:message for="cpf" styleClass="erro" />
+
+            <h:commandButton styleClass="waves-light btn" id="salvar" value="Salvar" type="submit" action="#{cadastroPessoasBean.salvar}"/>
+            <h:commandButton styleClass="waves-light btn" value="Cancelar" immediate="true" action="#{cadastroPessoasBean.cancelar}"/>
+            <h:commandButton styleClass="waves-light btn" id="btnL" value="Limpar" type="reset"/>
+
+            <h2>Lista de pessoas cadastradas</h2>
+            <h:dataTable id="tablePessoa" value="#{cadastroPessoasBean.lista}" var="p" rowClasses="linha1,linha2">
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                    #{p.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Nome</f:facet>
+                    #{p.nome}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">CPF</f:facet>
+                    #{p.cpf}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Dependentes</f:facet>
+                    #{p.dependente}
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+</html>

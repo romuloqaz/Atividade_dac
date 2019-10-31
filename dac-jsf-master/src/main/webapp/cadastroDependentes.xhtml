@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" >
+
+<ui:composition template="template.xhtml">
+    <ui:define name="centro">
+        <h1>Cadastro dependentes</h1>
+        <h:form>
+            <h:outputLabel value="Nome:"/>
+            <h:inputText id="nome" value="#{cadastroDependentesBean.dependenteSelecionado.nome}" required="true" requiredMessage="Campo Obrigatório"/>
+            <h:message for="nome" styleClass="erro" />
+            <h:outputLabel value="Data de nascimento" for="dataNascimento" />
+            <h:inputText id="dataNascimento" value="#{cadastroDependentesBean.dependenteSelecionado.dataDeNascimento}" converterMessage="Máscara da data dd/mm/aaaa">
+            </h:inputText>
+            <h:message for="dataNascimento" styleClass="erro" />
+
+            <h:commandButton styleClass="waves-light btn" id="salvar" value="Salvar" type="submit" action="#{cadastroDependentesBean.salvar}"/>
+            <h:commandButton styleClass="waves-light btn" id="btnL" value="Limpar" type="reset"/>
+
+            <h2>Lista de dependentes cadastrados</h2>
+            <h:dataTable id="tableDependente" value="#{cadastroDependentesBean.lista}" var="d" rowClasses="linha1,linha2">
+                <h:column>
+                    <f:facet name="header">uuid</f:facet>
+                    #{d.uuid}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Nome</f:facet>
+                    #{d.nome}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Data de nascimento</f:facet>
+                    #{d.dataDeNascimento}
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+</html>

@@ -1,0 +1,5 @@
+beans/CadastroPessoasBean.class
+br/edu/ifpb/domain/CPF.class
+br/edu/ifpb/domain/Dependente.class
+beans/MeuPrimeiroBean.class
+br/edu/ifpb/domain/Pessoa.class
